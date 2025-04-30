@@ -1,0 +1,268 @@
+/** Athletics **/
+
+/* Poids 300 */
+
+@font-face {
+  font-family: Athletics;
+  src: url("/fonts/Athletics/Athletics-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Athletics;
+  src: url("/fonts/Athletics/Athletics-LightItalic.woff2") format("woff2");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Poids 400 */
+
+@font-face {
+  font-family: Athletics;
+  src: url("/fonts/Athletics/Athletics-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Athletics;
+  src: url("/fonts/Athletics/Athletics-Italic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Poids 500 */
+
+@font-face {
+  font-family: Athletics;
+  src: url("/fonts/Athletics/Athletics-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Athletics;
+  src: url("/fonts/Athletics/Athletics-MediumItalic.woff2") format("woff2");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Poids 700 */
+
+@font-face {
+  font-family: Athletics;
+  src: url("/fonts/Athletics/Athletics-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Athletics;
+  src: url("/fonts/Athletics/Athletics-BoldItalic.woff2") format("woff2");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Poids 800 */
+
+@font-face {
+  font-family: Athletics;
+  src: url("/fonts/Athletics/Athletics-ExtraBold.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Athletics;
+  src: url("/fonts/Athletics/Athletics-ExtraBoldItalic.woff2") format("woff2");
+  font-weight: 800;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Poids 900 */
+
+@font-face {
+  font-family: Athletics;
+  src: url("/fonts/Athletics/Athletics-Black.woff2") format("woff2");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Fallbacks pour les fichiers manquants */
+/* Poids 100 et 200 (non disponibles, fallback avec 300) */
+
+@font-face {
+  font-family: Athletics;
+  src: url("/fonts/Athletics/Athletics-Light.woff2") format("woff2");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Athletics;
+  src: url("/fonts/Athletics/Athletics-LightItalic.woff2") format("woff2");
+  font-weight: 200;
+  font-style: italic;
+  font-display: swap;
+}
+
+/** BeVietnam **/
+
+/* Poids 100 */
+
+@font-face {
+  font-family: BeVietnam;
+  src: url("/fonts/Be_Vietnam/BeVietnam-Thin.woff2") format("woff2");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: BeVietnam;
+  src: url("/fonts/Be_Vietnam/BeVietnam-ThinItalic.woff2") format("woff2");
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Poids 200 (fallback avec 100) */
+
+@font-face {
+  font-family: BeVietnam;
+  src: url("/fonts/Be_Vietnam/BeVietnam-Thin.woff2") format("woff2");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Poids 300 */
+
+@font-face {
+  font-family: BeVietnam;
+  src: url("/fonts/Be_Vietnam/BeVietnam-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: BeVietnam;
+  src: url("/fonts/Be_Vietnam/BeVietnam-LightItalic.woff2") format("woff2");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Poids 400 */
+
+@font-face {
+  font-family: BeVietnam;
+  src: url("/fonts/Be_Vietnam/BeVietnam-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: BeVietnam;
+  src: url("/fonts/Be_Vietnam/BeVietnam-Italic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Poids 500 */
+
+@font-face {
+  font-family: BeVietnam;
+  src: url("/fonts/Be_Vietnam/BeVietnam-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: BeVietnam;
+  src: url("/fonts/Be_Vietnam/BeVietnam-MediumItalic.woff2") format("woff2");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Poids 600 */
+
+@font-face {
+  font-family: BeVietnam;
+  src: url("/fonts/Be_Vietnam/BeVietnam-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: BeVietnam;
+  src: url("/fonts/Be_Vietnam/BeVietnam-SemiBoldItalic.woff2") format("woff2");
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Poids 700 */
+
+@font-face {
+  font-family: BeVietnam;
+  src: url("/fonts/Be_Vietnam/BeVietnam-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: BeVietnam;
+  src: url("/fonts/Be_Vietnam/BeVietnam-BoldItalic.woff2") format("woff2");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Poids 800 */
+
+@font-face {
+  font-family: BeVietnam;
+  src: url("/fonts/Be_Vietnam/BeVietnam-ExtraBold.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: BeVietnam;
+  src: url("/fonts/Be_Vietnam/BeVietnam-ExtraBoldItalic.woff2") format("woff2");
+  font-weight: 800;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Poids 900 (fallback avec 800) */
+
+@font-face {
+  font-family: BeVietnam;
+  src: url("/fonts/Be_Vietnam/BeVietnam-ExtraBold.woff2") format("woff2");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}

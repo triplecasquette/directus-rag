@@ -1,0 +1,36 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "test:chunk": "tsx src/scripts/tests/01-chunking.test.ts",
+    "test:embed": "tsx src/scripts/tests/02-embedding.test.ts",
+    "test:qdrant": "tsx src/scripts/tests/03-qdrant.test.ts",
+    "test:index": "tsx src/scripts/tests/04-index.test.ts",
+    "test:search": "tsx src/scripts/tests/05-search.test.ts",
+    "test:generate": "tsx src/scripts/tests/06-generation.test.ts",
+    "clear:qdrant": "tsx src/scripts/clear-qdrant.ts",
+    "index:all": "tsx src/domain/indexer/index-all-docs.ts"
+  },
+  "dependencies": {
+    "@dqbd/tiktoken": "^1.0.21",
+    "@qdrant/js-client-rest": "^1.14.0",
+    "colord": "^2.9.3",
+    "nuxt": "^3.16.2",
+    "undici": "^7.8.0",
+    "uuid": "^11.1.0",
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.0"
+  },
+  "packageManager": "pnpm@10.9.0+sha512.0486e394640d3c1fb3c9d43d49cf92879ff74f8516959c235308f5a8f62e2e19528a65cdc2a3058f587cde71eba3d5b56327c8c33a97e4c4051ca48a10ca2d5f",
+  "devDependencies": {
+    "@types/node": "^22.14.1",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.19.4"
+  }
+}

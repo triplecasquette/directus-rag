@@ -1,0 +1,152 @@
+@import "tailwindcss";
+
+@theme {
+  /* 🎨 Couleurs */
+  --color-white: #ffffff;
+  --color-pink: #f35987;
+  --color-pink-light: #fef2f5;
+  --color-blue: #202560;
+  --color-blue-light: #8f92af;
+  --color-body-blue: #585c87;
+  --color-body-white: #c7c8d7;
+  --color-body-grey: #f6f6f9;
+  --color-border: #e1e8ed;
+  --color-border-grey: #dbdce5;
+  --color-red: #f75a5a;
+  --color-red-light: #fee1e1;
+
+  /* 🖋️ Fonts */
+  --font-athletics: "Athletics";
+  --font-beVietnam: "BeVietnam";
+
+  /* 🔠 Font size */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 2rem;
+  --font-size-3xl: 2.5rem;
+  --font-size-4xl: 3rem;
+
+  /* 📏 Spacing */
+  --spacing-1: 0.25rem;
+  --spacing-2: 0.5rem;
+  --spacing-4: 1rem;
+  --spacing-6: 1.5rem;
+  --spacing-8: 2rem;
+  --spacing-10: 2.5rem;
+  --spacing-12: 3rem;
+  --spacing-14: 3.5rem;
+  --spacing-16: 4rem;
+  --spacing-20: 5rem;
+  --spacing-22: 5.625rem;
+  --spacing-24: 6rem;
+
+  /* 🧱 Layout */
+
+  --container-8xl: 1440px;
+  --container-2xl: 1400px;
+  --container-padding: 2rem;
+
+  /* 🧤 Shadows */
+  --shadow-google: 8px 8px 0px 0 rgba(218, 219, 228);
+}
+
+* {
+  scroll-behavior: smooth;
+  @apply antialiased;
+}
+
+b,
+strong {
+  @apply font-bold;
+}
+
+p {
+  @apply font-beVietnam;
+}
+
+.highlight-pink {
+  @apply bg-pink rounded-md px-3 py-[2px];
+}
+
+.post-content {
+  @apply font-beVietnam mx-auto w-full;
+
+  /* Application de la couleur principale pour les éléments de texte */
+  @apply [&>p>img]:mx-auto;
+  @apply [&>img]:mx-auto;
+
+  /* Application de la couleur principale pour les éléments de texte */
+  @apply [&>*:is(h2,h3,h4,h5,h6,ul,p,li,ul>li)]:text-blue;
+
+  /* Styles pour les titres */
+
+  /* H2 */
+  @apply [&>h2:first-child]:mb-7 max-md:[&>h2:first-child]:mb-5 [&>h2:not(:first-child)]:my-7 max-md:[&>h2:not(:first-child)]:my-5 [&>h2]:text-[36px]/[40px] [&>h2]:font-medium [&>h2]:tracking-tight max-md:[&>h2]:text-[28px]/[32px] [&h2]:not-italic;
+
+  /* H3 */
+  @apply [&>h3]:my-5 [&>h3]:text-[32px]/[40px] [&>h3]:font-medium [&>h3]:not-italic [&>h3]:tracking-tight max-md:[&>h3]:my-2 max-md:[&>h3]:text-[23px]/[28px];
+
+  /* H4 */
+  @apply [&>h4]:mb-2 [&>h4]:mt-5 [&>h4]:text-2xl/[32px] [&>h4]:font-medium [&>h4]:not-italic [&>h4]:tracking-tight;
+
+  /* H5 */
+  @apply [&>h5]:text-xl/7 [&>h5]:font-light [&>h5]:not-italic [&>h5]:tracking-tight [&>h5]:underline;
+
+  /* H6 */
+  @apply [&>h6]:text-base/6 [&>h6]:font-medium [&>h6]:not-italic [&>h6]:tracking-tight;
+
+  /* Paragraphes */
+  @apply [&>p>a]:text-pink [&>p>a>strong]:font-bold [&>p>a]:font-semibold [&>p]:my-2 [&>p]:font-normal;
+
+  /* Appliquer des styles à toutes les listes non ordonnées (ul) et leurs éléments */
+  @apply [&_ul>li]:list-inside [&_ul>li]:list-disc [&_ul>li]:pl-6 [&_ul>li]:-indent-6 [&_ul>li]:font-normal [&_ul]:my-2;
+
+  /* Appliquer des styles à toutes les listes ordonnées (ol) et leurs éléments */
+  @apply [&_ol>li]:list-inside [&_ol>li]:list-decimal [&_ol>li]:pl-6 [&_ol>li]:-indent-6 [&_ol>li]:font-normal [&_ol]:my-2;
+}
+
+.post-content * strong {
+  @apply font-bold;
+}
+
+.post-content * img {
+  @apply my-10;
+}
+
+.toc {
+  /* Layout général */
+  @apply break-words p-[30px_30px_50px_50px];
+
+  /* Styles de texte */
+  @apply font-beVietnam [&>ol>li>a]:text-body-blue [&>ol>li>a]:font-normal [&>ol_*]:!text-base/6;
+
+  /* Styles généraux pour les listes de tous les niveaux */
+  @apply [&>ol>li:not(:first-child)]:mt-5;
+}
+
+.past-chapter {
+  @apply !text-[#606069]/20;
+}
+
+.current-chapter {
+  @apply text-blue relative;
+}
+
+.current-chapter a {
+  @apply !font-semibold;
+}
+
+.current-chapter::before {
+  @apply bg-pink absolute -left-3 top-1/2 h-[calc(100%-8px)] w-1 -translate-x-full -translate-y-1/2 rounded-lg content-[''];
+}
+
+.round-icon {
+  @apply border-pink bg-pink-light flex h-[52px] w-[52px] items-center justify-center rounded-full border;
+}
+
+.icon-title {
+  @apply [&>h3]:text-pink gap-x-5;
+}
