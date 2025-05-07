@@ -4,16 +4,15 @@
  * Shows detailed logs: user question, number of retrieved passages, prompt preview, and generated answer.
  */
 import { createVectorStore } from '../../domain/vector-store/VectorStoreFactory.ts'
-import { GenericEmbedder } from '../../domain/embedding/GenericEmbedder.ts'
-import { normalizeVector } from '../../utils/vector.ts'
 import readline from 'node:readline/promises'
 import { stdin as input, stdout as output } from 'node:process'
+import { BgeM3Embedder } from '~/src/domain/embedding/BgeM3Embedder.ts'
 
 const VECTORSTORE_URL = process.env.VECTORSTORE_URL || 'http://localhost:6333'
 const VECTOR_COLLECTION_NAME = process.env.VECTOR_COLLECTION_NAME || 'docs_chunks'
-const LLM_MODEL = process.env.LLM_MODEL || process.env.OLLAMA_LLM_MODEL || 'dolphin3'
+const LLM_MODEL = process.env.RAG_LLM_GENERATION_MODEL || 'dolphin3'
 const OLLAMA_URL = process.env.OLLAMA_URL || 'http://localhost:11434/api/generate'
-const TOP_K = parseInt(process.env.RAG_TOP_K || '20', 10)
+const TOP_K = parseInt(process.env.RAG_TOP_K || '5', 10)
 
 /**
  * Build a prompt for the LLM using the question and retrieved documentation contexts.
@@ -65,13 +64,13 @@ async function main() {
     url: VECTORSTORE_URL,
     collectionName: VECTOR_COLLECTION_NAME
   })
-  const embedder = new GenericEmbedder()
+  const embedder = new BgeM3Embedder()
 
   const question = await askQuestion('❓ Enter your question for the Directus docs: ')
   console.log('\n--- User question ---')
   console.log(question)
 
-  const queryVec = normalizeVector(await embedder.embed(question))
+  const queryVec = await embedder.embed(question)
   const results = await vectorStore.search(queryVec, TOP_K)
 
   console.log(`\n--- Retrieved ${results.length} passage(s) from the vector store ---`)

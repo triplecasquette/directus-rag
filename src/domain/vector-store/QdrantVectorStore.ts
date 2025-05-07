@@ -17,8 +17,8 @@ export class QdrantVectorStore implements IVectorStore {
       vector: query,
       top: topK,
       with_payload: true,
-      with_vector: false,
-      score_threshold: 0.75,
+      with_vector: true,
+      score_threshold: 0.6,
     }
 
     const res = await fetch(`${this.url}/collections/${this.collectionName}/points/search`, {
@@ -34,11 +34,14 @@ export class QdrantVectorStore implements IVectorStore {
 
     const data = await res.json()
 
-    console.log('\n📦 Raw Qdrant result:\n', JSON.stringify(data.result, null, 2))
+    /* console.log('\n📦 Raw Qdrant result:\n', JSON.stringify(data.result, null, 2)) */
+    data.result.forEach((point: any, i: number) => {
+      console.log(`#${i + 1} | score: ${point.score?.toFixed(4)} | source: ${point.payload?.source}`);
+    });
 
     return data.result.map((point: any) => ({
       id: point.id,
-      vector: [], // vector not returned here
+      vector: point.vector,
       payload: point.payload,
       score: point.score
     }))

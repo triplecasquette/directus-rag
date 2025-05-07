@@ -1,12 +1,13 @@
 /**
  * 02 - Embedding Test
- * Simple test: generate an embedding vector for a sample text using the GenericEmbedder.
+ * Simple test: generate an embedding vector for a sample text using the BgeM3Embedder.
  * Prints the vector dimension and a preview.
  */
-import { GenericEmbedder } from '../../domain/embedding/GenericEmbedder.ts'
+
+import { BgeM3Embedder } from "~/src/domain/embedding/BgeM3Embedder"
 
 const main = async () => {
-  const embedder = new GenericEmbedder()
+  const embedder = new BgeM3Embedder()
   const text = 'Directus is an open-source data platform for managing content, users, and more.'
   const vector = await embedder.embed(text)
 

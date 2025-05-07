@@ -4,6 +4,7 @@
     "source.fixAll": "always",
     "source.fixAll.eslint": "always"
   },
+  "typescript.tsdk": "node_modules/typescript/lib",
   "editor.wordWrap": "on",
   "editor.tabSize": 2,
   "editor.detectIndentation": false,

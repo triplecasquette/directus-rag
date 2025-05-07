@@ -1,7 +1,6 @@
 import type { IChunker } from '../chunking/IChunker.ts'
 import type { IEmbedder } from '../embedding/IEmbedder.ts'
 import type { IVectorStore } from '../vector-store/IVectorStore.ts'
-import { normalizeVector } from '../../utils/vector.ts'
 import { documentChunksToQdrantPoints } from '../vector-store/mappers/documentChunksToQdrantPoints.ts'
 import { readdir } from 'node:fs/promises'
 import { join } from 'node:path'
@@ -51,7 +50,12 @@ export class Indexer {
 
         // Only embed/index new chunks
         const texts = newChunks.map(c => c.content)
-        const vectors = await Promise.all(texts.map(text => this.embedder.embed(text).then(normalizeVector)))
+        const vectors = await Promise.all(texts.map(text => this.embedder.embed(text)))
+        vectors.forEach((vec, i) => {
+          if (!Array.isArray(vec) || vec.length === 0) {
+            console.warn(`⚠️ Empty or invalid vector at chunk ${newChunks[i].id} (${newChunks[i].metadata.source})`)
+          }
+        })
         const points = documentChunksToQdrantPoints(newChunks, vectors)
         if (points.length > 0) {
           await this.vectorStore.addDocuments(points)

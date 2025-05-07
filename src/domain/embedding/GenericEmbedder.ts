@@ -8,7 +8,7 @@ export class GenericEmbedder implements IEmbedder {
   private readonly model: string
 
   constructor(model?: string) {
-    this.model = model || process.env.OLLAMA_EMBED_MODEL || 'bge-m3'
+    this.model = model || process.env.OLLAMA_EMBED_MODEL || 'nomic-embed-text'
   }
 
   async embed(text: string): Promise<number[]> {

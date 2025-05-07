@@ -1,5 +1,5 @@
 import { MarkdownChunker } from '../chunking/MarkdownChunker.ts'
-import { GenericEmbedder } from '../embedding/GenericEmbedder.ts'
+import { BgeM3Embedder } from '../embedding/BgeM3Embedder.ts';
 import { createVectorStore } from '../vector-store/VectorStoreFactory.ts'
 import { Indexer } from './Indexer.ts'
 
@@ -26,7 +26,7 @@ const fetchExistingChunkIds = async (qdrantUrl: string, collection: string, ids:
 
 const main = async () => {
   const chunker = new MarkdownChunker()
-  const embedder = new GenericEmbedder()
+  const embedder = new BgeM3Embedder()
   const vectorStore = createVectorStore(process.env.VECTOR_BACKEND || 'qdrant', {
     url: process.env.VECTORSTORE_URL || 'http://localhost:6333',
     collectionName: process.env.VECTOR_COLLECTION_NAME || 'docs_chunks'

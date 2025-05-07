@@ -5,20 +5,18 @@
  * End-to-end test: embeds a sample question, queries the vector store (Qdrant), and prints detailed top results.
  * Shows preview of the query vector, input question, number of results, and details for each result (text, source, score).
  */
+import { BgeM3Embedder } from '~/src/domain/embedding/BgeM3Embedder.ts'
 import { createVectorStore } from '../../domain/vector-store/VectorStoreFactory.ts'
-import { GenericEmbedder } from '../../domain/embedding/GenericEmbedder.ts'
-import { normalizeVector } from '../../utils/vector.ts'
 
 const main = async () => {
   const store = createVectorStore(process.env.VECTOR_BACKEND || 'qdrant', {
     url: process.env.VECTORSTORE_URL || 'http://localhost:6333',
     collectionName: process.env.VECTOR_COLLECTION_NAME || 'docs_chunks',
   })
-  const embedder = new GenericEmbedder()
+  const embedder = new BgeM3Embedder()
 
   const input = 'How can I set up user authentication in Directus?'
-  const raw = await embedder.embed(input)
-  const embedding = normalizeVector(raw)
+  const embedding = await embedder.embed(input)
 
   console.log('--- Query vector (preview) ---')
   console.log(embedding.slice(0, 5).map(v => v.toFixed(4)).join(', '), '...')

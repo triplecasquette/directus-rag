@@ -6,7 +6,7 @@ import { MarkdownChunker } from '../../domain/chunking/MarkdownChunker.ts'
  */
 const main = async () => {
   const chunker = new MarkdownChunker()
-  const chunks = await chunker.chunk('./data/directus-docs/test.md')
+  const chunks = await chunker.chunk('./data/directus-docs/sdk/getting-started.md')
 
   if (!chunks.length) {
     console.log('No chunks generated.')

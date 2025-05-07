@@ -15,21 +15,30 @@
     "test:search": "tsx src/scripts/tests/05-search.test.ts",
     "test:generate": "tsx src/scripts/tests/06-generation.test.ts",
     "clear:qdrant": "tsx src/scripts/clear-qdrant.ts",
-    "index:all": "tsx src/domain/indexer/index-all-docs.ts"
+    "index:all": "tsx src/domain/indexer/index-all-docs.ts",
+    "test": "tsx src/scripts/tests/07-test.ts"
   },
   "dependencies": {
-    "@dqbd/tiktoken": "^1.0.21",
+    "@pinia/nuxt": "0.11.0",
     "@qdrant/js-client-rest": "^1.14.0",
-    "colord": "^2.9.3",
+    "@tailwindcss/vite": "^4.1.5",
+    "markdown-it": "^14.1.0",
+    "markdown-it-prism": "^3.0.0",
     "nuxt": "^3.16.2",
+    "pinia": "^3.0.2",
+    "prismjs": "^1.30.0",
+    "tailwindcss": "^4.1.5",
     "undici": "^7.8.0",
     "uuid": "^11.1.0",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"
   },
-  "packageManager": "pnpm@10.9.0+sha512.0486e394640d3c1fb3c9d43d49cf92879ff74f8516959c235308f5a8f62e2e19528a65cdc2a3058f587cde71eba3d5b56327c8c33a97e4c4051ca48a10ca2d5f",
+  "packageManager": "pnpm@10.10.0+sha512.d615db246fe70f25dcfea6d8d73dee782ce23e2245e3c4f6f888249fb568149318637dca73c2c5c8ef2a4ca0d5657fb9567188bfab47f566d1ee6ce987815c39",
   "devDependencies": {
+    "@tailwindcss/typography": "^0.5.16",
+    "@types/markdown-it": "^14.1.2",
     "@types/node": "^22.14.1",
+    "fast-glob": "^3.3.3",
     "ts-node": "^10.9.2",
     "tsx": "^4.19.4"
   }

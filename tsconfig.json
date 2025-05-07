@@ -15,5 +15,10 @@
   },
   "ts-node": {
     "esm": true
+  },
+  "vueCompilerOptions": {
+    "plugins": [
+      "@vue/language-plugin"
+    ]
   }
 }

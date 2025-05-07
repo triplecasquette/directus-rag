@@ -4,20 +4,18 @@
  * Checks that the insertion does not throw and shows a preview of the vector and payload.
  */
 import { createVectorStore } from '../../domain/vector-store/VectorStoreFactory.ts'
-import { GenericEmbedder } from '../../domain/embedding/GenericEmbedder.ts'
-import { normalizeVector } from '../../utils/vector.ts'
 import { randomUUID } from 'crypto'
+import { BgeM3Embedder } from '~/src/domain/embedding/BgeM3Embedder.ts'
 
 const main = async () => {
   const store = createVectorStore(process.env.VECTOR_BACKEND || 'qdrant', {
     url: process.env.VECTORSTORE_URL || 'http://localhost:6333',
     collectionName: process.env.VECTOR_COLLECTION_NAME || 'docs_chunks',
   })
-  const embedder = new GenericEmbedder()
+  const embedder = new BgeM3Embedder()
 
   const text = 'Trying to debug is not so easy.'
-  const rawVector = await embedder.embed(text)
-  const vector = normalizeVector(rawVector)
+  const vector = await embedder.embed(text)
 
   const testPoint = {
     id: randomUUID(),
