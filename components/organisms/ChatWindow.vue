@@ -14,8 +14,8 @@ const emit = defineEmits<{
 const question = ref('')
 const { answer, sources, error, ask } = useRagChat()
 
-// Historique des échanges
-// Chaque entrée contient la question, la réponse, les sources et l'erreur éventuelle
+// Exchanges history
+// Each entry contains the question, the answer, the sources and the possible error
 interface ChatEntry {
   question: string
   answer: string
@@ -23,7 +23,7 @@ interface ChatEntry {
   error?: string | null
 }
 
-// Ajoute la réponse à l'historique dès qu'elle arrive
+// Add the answer to the history as soon as it arrives
 watch(
   () => answer.value,
   (newAnswer) => {
@@ -41,7 +41,7 @@ watch(
 
 const submit = async () => {
   if (question.value.trim()) {
-    // Ajoute la question à l'historique, réponse vide pour l'instant
+    // Add the question to the history, empty answer for now
     chatHistoryStore.history.push({
       question: question.value,
       answer: '',
@@ -49,13 +49,13 @@ const submit = async () => {
       error: undefined
     })
     const currentQuestion = question.value
-    question.value = '' // Vide l'input
+    question.value = '' // Clear the input
     // Pipeline steps
     pipelineStepStore.setStep('checking')
     await nextTick()
     const isRelevant = await checkRelevanceToDirectus(currentQuestion)
     if (!isRelevant) {
-      // Ajoute l'erreur à la dernière entrée déjà créée
+      // Add the error to the last entry already created
       const last = chatHistoryStore.history[chatHistoryStore.history.length - 1]
       if (last && last.answer === '' && last.question === currentQuestion) {
         last.error = "Whoops! I'm built for Directus questions only — happy to help with those!"
@@ -107,7 +107,7 @@ const submit = async () => {
         </template>
       </div>
 
-      <!-- Input fixé en bas -->
+      <!-- Input fixed at the bottom -->
       <div class="shrink-0 p-4 border-t border-grey">
         <ChatInput
           v-model="question"

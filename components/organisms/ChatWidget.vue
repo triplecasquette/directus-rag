@@ -7,7 +7,7 @@ const toggle = () => { isOpen.value = !isOpen.value }
 </script>
 
 <template>
-  <!-- Bouton flottant -->
+  <!-- Floating button -->
   <Button
     :click-event="toggle"
     class="fixed bottom-4 right-4 z-50 flex items-center justify-center w-12 h-12 rounded-full text-white shadow-lg transition"
@@ -17,6 +17,6 @@ const toggle = () => { isOpen.value = !isOpen.value }
     🐇
   </Button>
 
-  <!-- Fenêtre modale -->
+  <!-- Modal window -->
   <ChatWindow v-if="isOpen" @close="toggle" />
 </template>

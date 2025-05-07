@@ -15,8 +15,7 @@
     "test:search": "tsx src/scripts/tests/05-search.test.ts",
     "test:generate": "tsx src/scripts/tests/06-generation.test.ts",
     "clear:qdrant": "tsx src/scripts/clear-qdrant.ts",
-    "index:all": "tsx src/domain/indexer/index-all-docs.ts",
-    "test": "tsx src/scripts/tests/07-test.ts"
+    "index:all": "tsx src/domain/indexer/index-all-docs.ts"
   },
   "dependencies": {
     "@pinia/nuxt": "0.11.0",

@@ -1,101 +1,102 @@
-# 📚 RAG Directus — Roadmap Technique Complète
+# 📚 RAG Directus — Complete Technical Roadmap
 
-## 🎯 Objectif du projet
+## 🎯 Project Objective
 
-Développer un système RAG (Retrieval-Augmented Generation) **local, open source, et intégré à la documentation de Directus**.  
-Le MVP doit permettre de poser une question en langage naturel et obtenir une réponse contextuelle à partir des fichiers `.md` de la documentation officielle, hébergée sur GitHub.
+Develop a RAG (Retrieval-Augmented Generation) system that is **local, open source, and integrated with the Directus documentation**.  
+The MVP should allow users to ask a question in natural language and receive a contextual answer based on the `.md` files from the official documentation hosted on GitHub.
 
-Public cible : anglophone → international  
-Modèle LLM : local via Ollama (ex : Dolphin)  
-Embedding : local via `nomic-embed-text`  
-Vector store : Qdrant (auto-hébergeable)
+Target audience: English-speaking → international  
+LLM model: local via Ollama (e.g., Dolphin)  
+Embedding: local via `bge-m3`  
+Vector store: Qdrant (self-hostable)
 
-## 📦 Stack technique choisie
+## 📦 Chosen Tech Stack
 
-| Composant             | Choix validé             | Raison                                                                 |
-|-----------------------|--------------------------|------------------------------------------------------------------------|
-| Frontend              | Nuxt (latest)            | Facilité d'intégration dans la doc Directus (également en Nuxt)       |
-| Chunking              | Custom TypeScript        | Découpe logique sur base Markdown (`##`, paragraphes, overlap soft)   |
-| Embedding             | `nomic-embed-text` (Ollama)| Local, rapide, adapté à l’anglais, 768-dim, suffisant pour MVP         |
-| Vector store          | Qdrant                   | API simple, open source, compatible cloud/on-prem, meilleur qu’un Postgres + pgvector pour ce cas |
-| LLM                   | Dolphin (Ollama)         | Modèle local, français compréhensible, performance raisonnable         |
-| Architecture          | DDD légère / SOLID       | Permet de switcher chaque brique sans tout réécrire                    |
-| Format de chunk       | Markdown `.md`           | Fichiers extraits de la doc GitHub de Directus                        |
-| Mode de build         | TypeScript ESM + `ts-node/esm` | Full typé, import explicite `.ts`, scripts en `scripts/`            |
+| Component             | Validated Choice            | Reason                                                                 |
+|-----------------------|-----------------------------|------------------------------------------------------------------------|
+| Frontend              | Nuxt (latest)               | Easy integration into Directus docs (also in Nuxt)                     |
+| Chunking              | Custom TypeScript           | Logical split based on Markdown (`##`, paragraphs, soft overlap)       |
+| Embedding             | `bge-m3` (Ollama)           | Local, fast, suitable for English, 1024-dim, sufficient for MVP        |
+| Vector store          | Qdrant                      | Simple API, open source, cloud/on-prem compatible,
+better than Postgres + pgvector for this use case |
+| LLM                   | Dolphin (Ollama)            | Local model, reasonable performance, can understand French             |
+| Architecture          | Lightweight DDD / SOLID     | Allows swapping any component without rewriting everything             |
+| Chunk format          | Markdown `.md`              | Files extracted from Directus GitHub docs                              |
+| Build mode            | TypeScript ESM + `ts-node/esm` | Fully typed, explicit `.ts` imports, scripts in `scripts/`          |
 
-## ✅ Étapes terminées
+## ✅ Completed Steps
 
-### 1. 🔧 Setup initial
-- Projet Nuxt démarré
-- Fichiers `.ts` stricts avec ESM (`allowImportingTsExtensions`)
-- Structure DDD `rag/` posée (`chunking/`, `embedding/`, `domain/`…)
+### 1. 🔧 Initial Setup
+- Nuxt project started
+- Strict `.ts` files with ESM (`allowImportingTsExtensions`)
+- DDD structure `rag/` set up (`chunking/`, `embedding/`, `domain/`…)
 
 ### 2. 🧱 Chunking
-- Découpage des `.md` par `##` (sections)
-- Re-split auto en paragraphes si trop gros (> 500 tokens)
-- Option d’overlap textuel implémentée mais désactivée pour la V1
-- `DocumentChunk` typé proprement
-- Testé via `scripts/test-chunk.ts`
+- Splitting `.md` files by `##` (sections)
+- Auto re-split into paragraphs if too large (> 500 tokens)
+- Textual overlap option implemented but disabled for V1
+- Cleanly typed `DocumentChunk`
+- Tested via `scripts/test-chunk.ts`
 
-### 3. 🔢 Embedding local
-- Classe `NomicEmbedder` implémentant `Embedder`
-- Appel vers `http://localhost:11434/api/embeddings`
-- Fonctionne avec Ollama
-- Format vectoriel : `number[]` de taille 768
-- Testé avec `scripts/test-embed.ts`
+### 3. 🔢 Local Embedding
+- `NomicEmbedder` class implementing `Embedder`
+- Calls `http://localhost:11434/api/embeddings`
+- Works with Ollama
+- Vector format: `number[]` of size 768
+- Tested with `scripts/test-embed.ts`
 
-## 🔜 Étapes à réaliser
+## 🔜 Next Steps
 
 ### 4. 🧠 Qdrant Vector Store
 
-#### Fichier à créer : `rag/vector/QdrantVectorStore.ts`
+#### File to create: `rag/vector/QdrantVectorStore.ts`
 
-#### Méthodes à implémenter :
+#### Methods to implement:
 - `addDocuments(chunks: DocumentChunk[]): Promise<void>`
 - `search(query: string): Promise<SearchResult[]>`
 
-#### Contraintes :
-- Utilisation de l’API REST Qdrant (`http://localhost:6333`)
-- Index basé sur les `embeddings` générés
-- Chaque document doit stocker les `metadata` (source, heading…)
+#### Constraints:
+- Use Qdrant REST API (`http://localhost:6333`)
+- Index based on generated `embeddings`
+- Each document must store `metadata` (source, heading, etc.)
 
-### 5. 📦 Indexation complète du corpus
+### 5. 📦 Full Corpus Indexing
 
-#### Script à créer : `scripts/index-all-docs.ts`
+#### Script to create: `scripts/index-all-docs.ts`
 
-Tâches :
-- Lire tous les `.md` dans `data/`
-- Chunker chaque fichier
-- Embeder chaque chunk
-- Indexer via `QdrantVectorStore`
+Tasks:
+- Read all `.md` files in `data/`
+- Chunk each file
+- Embed each chunk
+- Index via `QdrantVectorStore`
 
-### 6. 💬 Interface RAG minimaliste
+### 6. 💬 Minimalist RAG Interface
 
-Composant : `ChatRAG.vue` dans `Nuxt`
+Component: `ChatRAG.vue` in `Nuxt`
 
-Fonction :
-- Input utilisateur (question)
-- `embed()` la question
-- `search()` dans Qdrant
-- Concatène les chunks en prompt
-- Envoie à un LLM (Dolphin)
-- Affiche la réponse
+Function:
+- User input (question)
+- `embed()` the question
+- `search()` in Qdrant
+- Concatenate chunks into prompt
+- Send to an LLM (Dolphin)
+- Display the answer
 
-Bonus : 
-- Ajouter les `source` dans la réponse (liens, titres) → V2
+Bonus: 
+- Add `source` in the answer (links, titles) → V2
 
-## 🧠 Décisions stratégiques
+## 🧠 Strategic Decisions
 
-- **Langue cible :** anglais uniquement pour la V1
-- **Multilingue :** prévu pour une V2 (via traduction ou embeddings parallèles)
-- **Pas de dépendance cloud** → full local ou auto-hébergeable
-- **Pas de sous-chunking par tokens** → paragraphes suffisent pour la doc Directus
-- **Extensibilité prévue** → tous les composants sont abstraits via interfaces
+- **Target language:** English only for V1
+- **Multilingual:** planned for V2 (via translation or parallel embeddings)
+- **No cloud dependency** → fully local or self-hostable
+- **No sub-chunking by tokens** → paragraphs are enough for Directus docs
+- **Planned extensibility** → all components are abstracted via interfaces
 
-## 💡 Architecture métier
+## 💡 Business Architecture
 
 ```ts
-// Exemple d’interface d’abstraction
+// Example abstraction interface
 export interface Embedder {
   embed(text: string): Promise<number[]>
 }
@@ -106,40 +107,93 @@ export interface VectorStore {
 }
 ```
 
-## 📂 Arborescence actuelle
+## 📂 Current Structure
 
 ```
 /rag-directus
-├── /rag
-│   ├── /chunking
-│   ├── /embedding
-│   ├── /vector         ← À créer
-│   ├── /domain
-├── /scripts
-│   ├── test-chunk.ts
-│   ├── test-embed.ts
-│   └── index-all-docs.ts ← À créer
-├── /data
-│   └── directus-docs/ ← Markdown source
+/rag-directus
+├── components
+│   ├── atoms/
+│   ├── molecules/
+│   ├── organisms/
+│   └── svg/
+├── data
+│   └── directus-docs/
+├── layouts
+│   └── default.vue
+├── pages
+│   └── index.vue
+├── public
+│   ├── favicon.ico
+│   ├── robots.txt
+│   └── fonts/
+├── server
+│   └── api
+│       └── rag/
+│           ├── ask.post.ts
+│           └── callRagPipeline.ts
+├── src
+│   ├── assets/
+│   ├── domain/
+│   │   ├── chunking/
+│   │   ├── embedding/
+│   │   ├── generation/
+│   │   ├── indexer/
+│   │   ├── rerank/
+│   │   └── vector-store/
+│   ├── schemas/
+│   ├── scripts/
+│   │   ├── clear-qdrant.ts
+│   │   └── tests/
+│   │       ├── 01-chunking.test.ts
+│   │       ├── 02-embedding.test.ts
+│   │       ├── 03-qdrant.test.ts
+│   │       ├── 04-index.test.ts
+│   │       ├── 05-search.test.ts
+│   │       └── 06-generation.test.ts
+│   ├── services/
+│   ├── stores/
+│   ├── types/
+│   └── utils/
+├── .editorconfig
+├── .env.example
+├── .gitignore
+├── app.vue
+├── docker-compose.yml
+├── eslint.config.mjs
+├── nuxt.config.ts
+├── package.json
+├── pnpm-lock.yaml
+├── pnpm-workspace.yaml
+├── prettier.config.cjs
+├── README.md
+├── ROADMAP_RAG_DIRECTUS.md
+└── tsconfig.json
 ```
 
 ## 🧪 Tests
 
-Tous les composants métiers sont testables isolément :
-- `test-chunk.ts` → vérifie découpage
-- `test-embed.ts` → vérifie appel embedding Ollama
-- À venir : `test-search.ts` pour Qdrant
+All business components are testable in isolation:
+- `01-chunking.test.ts` → checks splitting
+- `02-embedding.test.ts` → checks embedding call to Ollama
+- `03-qdrant.test.ts` → checks Qdrant vector store integration
+- `04-index.test.ts` → checks full indexing pipeline
+- `05-search.test.ts` → checks search functionality
+- `06-generation.test.ts` → checks LLM generation pipeline
 
-## 🏁 Objectif MVP
+## 🏁 MVP Objective
 
-1. Poser une question
-2. Elle est embedée → comparée aux chunks
-3. Le LLM répond à partir des passages pertinents
+1. The user asks a question
+2. The system checks if the question is about Directus (LLM filter)
+3. If relevant, the question is embedded into a vector
+4. The vector is compared to documentation chunks (semantic search)
+5. (Planned) Chunks are reranked for better relevance
+6. The most relevant chunks are formatted into a prompt
+7. The prompt is sent to the LLM, which generates an answer
 
-## 🔁 Post-MVP envisagé
+## 🔁 Post-MVP Ideas
 
-- Webhook GitHub pour réindexation auto
-- Multilingue (langchain-style)
-- Format enrichi (liens vers sources, métadonnées)
-- Dockerisation
-- Intégration native dans `directus/docs`
+- Multilingual (langchain-style)
+- Enriched format (links to sources, metadata) -> first steps already here
+- Dockerization
+- Native integration into `directus/docs`
