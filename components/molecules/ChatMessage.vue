@@ -32,7 +32,7 @@ const md = computed(() => props.text ? parseMarkdown(props.text) : '')
     <p v-else-if="error" class="text-sm text-red-400">{{ error }}</p>
 
     <!-- Answer -->
-    <article v-else-if="text" class="prose prose-invert max-w-none [&>pre]:my-2 text-sm font-beVietnam leading-relaxed"
+    <article v-else-if="text" class="prose prose-invert max-w-none [&>pre]:my-2 text-sm font-poppins leading-relaxed"
       v-html="md" />
 
     <!-- Sources -->

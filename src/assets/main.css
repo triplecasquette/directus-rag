@@ -12,8 +12,8 @@
   --color-grey: #1F2937;
 
   /* 🖋️ Fonts */
-  --font-athletics: "Athletics";
-  --font-beVietnam: "BeVietnam";
+  --font-lexend: "Lexend";
+  --font-poppins: "Poppins";
 
   /* 🔠 Font size */
   --font-size-xs: 0.75rem;
@@ -51,7 +51,7 @@
 
 * {
   scroll-behavior: smooth;
-  @apply antialiased;
+  @apply antialiased font-poppins;
 }
 
 b,
@@ -85,5 +85,5 @@ strong {
 }
 
 p {
-  @apply font-beVietnam;
+  @apply font-poppins;
 }

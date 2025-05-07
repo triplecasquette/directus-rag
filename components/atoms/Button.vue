@@ -1,7 +1,7 @@
 <template>
   <button
         type="button"
-        class="px-4 py-2 bg-secondary hover:bg-primary text-white rounded disabled:opacity-50 font-beVietnam font-medium"
+        class="px-4 py-2 bg-secondary hover:bg-primary text-white rounded disabled:opacity-50 font-poppins font-medium"
         :disabled="disabled"
         @click="clickEvent"
       >

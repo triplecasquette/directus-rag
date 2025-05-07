@@ -33,7 +33,7 @@ const onEnter = (e: KeyboardEvent) => {
 
 <template>
   <div class="space-y-4">
-    <div class="relative flex items-center gap-2 font-beVietnam">
+    <div class="relative flex items-center gap-2 font-poppins">
       <textarea
         :value="modelValue"
         :disabled="step !== 'idle'"
