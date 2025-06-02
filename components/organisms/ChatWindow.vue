@@ -51,22 +51,11 @@ const submit = async () => {
     const currentQuestion = question.value
     question.value = '' // Clear the input
     // Pipeline steps
-    pipelineStepStore.setStep('checking')
-    await nextTick()
-    const isRelevant = await checkRelevanceToDirectus(currentQuestion)
-    if (!isRelevant) {
-      // Add the error to the last entry already created
-      const last = chatHistoryStore.history[chatHistoryStore.history.length - 1]
-      if (last && last.answer === '' && last.question === currentQuestion) {
-        last.error = "Whoops! I'm built for Directus questions only — happy to help with those!"
-      }
-      pipelineStepStore.setStep('idle')
-      return
-    }
     pipelineStepStore.setStep('sourcing')
     await nextTick()
     
     await ask(currentQuestion)
+    pipelineStepStore.setStep('thinking')
     await nextTick()
     pipelineStepStore.setStep('idle')
   }
