@@ -1,6 +1,6 @@
-# 📚 RAG Directus
+# 📚 # Open source and Local RAG - Retrieval-Augmented Generation
 
-A local, open-source Retrieval-Augmented Generation (RAG) system integrated with the official Directus documentation. Ask questions in natural language and get contextual, documentation-grounded answers—entirely on your own infrastructure.
+A local, open-source Retrieval-Augmented Generation (RAG) system integrated with Mardown Doc. Ask questions in natural language and get contextual, documentation-grounded answers—entirely on your own infrastructure.
 
 ---
 
